@@ -82,6 +82,7 @@ FFMPEG_FLAGS_COMMON="--target-os=linux \
 --disable-doc \
 --disable-demuxer=bluray \
 --disable-decoder=opus \
+--disable-armv5te
     --disable-protocol=xlvx \
     --enable-vfp"
 
@@ -114,7 +115,7 @@ FFMPEG_FLAGS_COMMON="--target-os=linux \
     LD_SONAME="-Wl,-soname,libffmpeg-miplayer.so"
 
     $CC -o $PREFIX/libffmpeg.so -shared $LDFLAGS $LD_SONAME $EXTRA_LDFLAGS \
-          libavutil/*.o libavutil/arm/*.o libavcodec/*.o libavcodec/arm/*.o compat/*.o
+          libavutil/*.o libavutil/arm/*.o libavcodec/*.o libavcodec/arm/*.o  compat/*.o libavformat/*.o libavresample/*.o libavresample/arm/*.o libswscale/*.o
 
     cp $PREFIX/libffmpeg.so $PREFIX/libffmpeg-unstrip.so
     ${STRIP} --strip-unneeded $PREFIX/libffmpeg.so

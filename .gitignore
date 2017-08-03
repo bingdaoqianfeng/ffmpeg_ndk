@@ -1,0 +1,8 @@
+gradle.properties
+local.properties
+gradlew
+libs/
+obj/
+.gradle/
+gradle/
+build/

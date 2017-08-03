@@ -88,3 +88,4 @@ echo "TARGET:   $TARGET"
 # install root for built files
 DESTDIR=`pwd`
 PREFIX=$DESTDIR/data/data/info.guardianproject.ffmpeg/app_opt
+LOCAL=$DESTDIR$PREFIX

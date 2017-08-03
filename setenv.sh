@@ -61,14 +61,18 @@ if [ "$platform" = "x86" ];then
   echo "Build Android x86 ffmpeg\n"
   x86_toolchain
   TARGET="x86"
+  HOST=i686-linux-android
 else
   echo "Build Android arm ffmpeg\n"
   arm_toolchain
   TARGET="neon"
+  HOST=arm-linux-androideabi
 #  TARGET="neon armv7 vfp armv6"
 fi
+echo "HOST:     $HOST"
 export PATH=$TOOLCHAIN/bin:$PATH
-export CC="$CCACHE ${CROSS_PREFIX}gcc"
+#export CC="$CCACHE ${CROSS_PREFIX}gcc"
+export CC=${CROSS_PREFIX}gcc
 export CXX=${CROSS_PREFIX}g++
 export LD=${CROSS_PREFIX}ld
 export AR=${CROSS_PREFIX}ar

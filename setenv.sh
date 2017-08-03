@@ -80,3 +80,7 @@ echo "AR:       $AR"
 echo "STRIP:    $STRIP"
 echo "PATH:     $PATH"
 echo "TARGET:   $TARGET"
+
+# install root for built files
+DESTDIR=`pwd`
+PREFIX=$DESTDIR/data/data/info.guardianproject.ffmpeg/app_opt

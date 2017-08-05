@@ -5,17 +5,12 @@
 
 cd sox
 
-if [[ $DEBUG == 1 ]]; then
-    echo "DEBUG = 1"
-    DEBUG_FLAG="--disable-stripping"
-fi
-
-patch -N -p1 --reject-file=- < ../sox-update-ffmpeg-api.patch
+#patch -N -p1 --reject-file=- < ../sox-update-ffmpeg-api.patch
 autoreconf --install --force --verbose
 
 confcommon="CC=$CC \
 LD=$LD \
-STRIP=$STRIP \
+STRIP="$STRIP" \
 --host=$HOST \
 --with-sysroot=$SYSROOT \
 --enable-static \
@@ -25,7 +20,7 @@ STRIP=$STRIP \
 --without-libltdl"
 
 echo "confcommon:   $confcommon"
-./configure $confcommon CFLAGS="-I$LOCAL/include -fPIE -pie" LDFLAGS="-L$LOCAL/lib -L$DESTDIR/x264 -fPIE -pie" LIBS="-lavformat -lavcodec -lavutil -lz -lx264"
+./configure $confcommon CFLAGS="-I$PREFIX/include -fPIE -pie" LDFLAGS="-L$PREFIX/lib -L$DESTDIR/x264 -fPIE -pie" LIBS="-lavformat -lavcodec -lavutil -lz -lx264"
 
 make -j4
 make STRIP=$STRIP DESTDIR=$DESTDIR prefix=$prefix install-strip

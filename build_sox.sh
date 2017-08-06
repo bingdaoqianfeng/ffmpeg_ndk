@@ -36,7 +36,7 @@ STRIP="$STRIP" \
 --without-libltdl"
 
 echo "confcommon:   $confcommon"
-./configure $confcommon CFLAGS="-I$PREFIX/include -fPIE -pie" LDFLAGS="-L$PREFIX/lib -L$DESTDIR/x264 -fPIE -pie" LIBS="-lavformat -lavcodec -lavutil -lz -lx264"
+./configure $confcommon CFLAGS="-I$PREFIX/include -fPIE -pie" LDFLAGS="-L$PREFIX/lib -L$PREFIX/x264 -fPIE -pie" LIBS="-lavformat -lavcodec -lavutil -lz -lx264"
 
 make -j4
 #make STRIP=$STRIP DESTDIR=$DESTDIR prefix=$prefix install-strip

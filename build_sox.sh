@@ -11,6 +11,7 @@ autoreconf --install --force --verbose
 confcommon="CC=$CC \
 LD=$LD \
 STRIP="$STRIP" \
+--prefix=$PREFIX \
 --host=$HOST \
 --with-sysroot=$SYSROOT \
 --enable-static \
@@ -23,4 +24,5 @@ echo "confcommon:   $confcommon"
 ./configure $confcommon CFLAGS="-I$PREFIX/include -fPIE -pie" LDFLAGS="-L$PREFIX/lib -L$DESTDIR/x264 -fPIE -pie" LIBS="-lavformat -lavcodec -lavutil -lz -lx264"
 
 make -j4
-make STRIP=$STRIP DESTDIR=$DESTDIR prefix=$prefix install-strip
+#make STRIP=$STRIP DESTDIR=$DESTDIR prefix=$prefix install-strip
+make install

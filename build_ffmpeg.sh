@@ -6,7 +6,7 @@ CFLAGS="-std=c99 -O3 -Wall -pipe -fpic \
   -fstrict-aliasing -Werror=strict-aliasing \
   -Wno-psabi -Wa,--noexecstack \
   -DANDROID -DNDK_BUILD -DNDEBUG "
-LDFLAGS="-lm -lz -llog -fPIC -Wl,--no-undefined -Wl,-z,noexecstack -Wl,--warn-shared-textrel"
+LDFLAGS="-pie -fPIE -lm -lz -llog -fPIC -Wl,--no-undefined -Wl,-z,noexecstack -Wl,--warn-shared-textrel"
 
 FFMPEG_FLAGS_COMMON="--target-os=linux \
     --enable-cross-compile \

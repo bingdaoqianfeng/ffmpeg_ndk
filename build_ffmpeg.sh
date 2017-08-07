@@ -1,4 +1,5 @@
 #!/bin/bash
+#For android 7.0, please use ffmpeg-3.3.3
 . setenv.sh
 cd ./ffmpeg-2.3.6
 

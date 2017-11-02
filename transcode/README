@@ -1,0 +1,46 @@
+#download ffmpeg-3.3.3
+#for build ffplay
+sudo apt-get install libsdl2-dev
+
+#install sdl2 on MAC
+https://www.libsdl.org/download-2.0.php
+1. download SDL2-2.0.5.dmg 
+2. sudo cp -r /Volumes/SDL2/SDL2.framework /Library/Frameworks 
+
+#x264
+git clone git://git.videolan.org/x264.git
+./configure --enable-static --enable-shared
+#./configure --enable-static --enable-shared --disable-asm
+make
+sudo make install
+
+#yasm
+git clone git://github.com/yasm/yasm.git
+cd yasm
+./autogen.sh
+./configure
+make
+sudo make install
+
+#nasm
+curl -O http://www.nasm.us/pub/nasm/releasebuilds/2.13.01/nasm-2.13.01.tar.gz
+tar xvzf nasm-2.13.01.tar.gz
+cd nasm-2.13.01/
+vim asm/parser.c  // 447     //nasm_static_assert(P_none == 0);
+./configure
+make
+sudo make install
+
+#ffmpeg
+./configure --enable-gpl --enable-libx264
+./configure --enable-gpl --enable-libx264 --enable-nonfree --enable-libfdk-aac
+
+#example
+export LD_LIBRARY_PATH=/usr/local/lib/
+
+./ffmpeg -i ../XiaomiPhone.mp4 -c:v libx264 -c:a aac ../output.mp4
+./ffmpeg -i ../media/XiaomiPhone.mp4 -c:v libx264 -c:a aac -ss 00:00:10 -to 00:00:20 ../output/segment.mp4
+
+#doc
+https://trac.ffmpeg.org/wiki/CompilationGuide/Quick/libx264
+https://trac.ffmpeg.org/wiki/How%20to%20quickly%20compile%20FFmpeg%20with%20libx264%20(x264%2C%20H.264)
